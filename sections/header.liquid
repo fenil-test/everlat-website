@@ -260,7 +260,7 @@
             {%- if customer and customer.has_avatar? -%}
               {{ customer | avatar }}
             {%- else -%}
-              {% render 'icon-account' %}
+              {% render 'account-icon' %}
             {%- endif -%}
           </account-icon>
           <span class="visually-hidden">
@@ -285,9 +285,9 @@
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {%- liquid
           if cart == empty
-            render 'icon-cart-empty'
+            render 'cart-icon'
           else
-            render 'icon-cart'
+            render 'cart-icon'
           endif
         -%}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>

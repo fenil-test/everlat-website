@@ -375,3 +375,35 @@ slider-component.slider-component-full-width {
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
 }
+
+.announcement-bar-text span{
+  color: var(--white-color);
+  line-height: 9.6px;
+  letter-spacing: 0.1em;
+}
+
+.announcement-bar__message span{
+  color: var(--white-color);
+  line-height: 9.6px;
+  letter-spacing: 0.1em;
+}
+
+.announcement-country svg{
+  display: block;
+}
+
+.announcement-bar-text span:not(span:last-child){
+  margin-right: 26px;
+}
+
+.announcement-bar__message{
+  padding: 0;
+}
+
+.utility-bar .utility-bar__grid{
+  align-items: flex-start;
+}
+
+.utility-bar{
+  padding: 2px 0px;
+}

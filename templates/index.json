@@ -3,19 +3,25 @@
     "image_banner": {
       "type": "image-banner",
       "blocks": {
+        "images_d7paww": {
+          "type": "images",
+          "settings": {
+            "heading-iamge": "shopify:\/\/shop_images\/Vector_bd3e40de-e973-4f91-944b-8496f20ed60a.png"
+          }
+        },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "heading": "LIMITED EDITION CAPSULE COLLECTION",
+            "heading_size": "h4"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
+            "button_label_1": "SHOP NOW",
             "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
+            "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
@@ -23,13 +29,15 @@
         }
       },
       "block_order": [
+        "images_d7paww",
         "heading",
         "button"
       ],
       "settings": {
+        "video": "shopify:\/\/files\/videos\/-74ef-4c29-aa74-7e3a8e20f2ab.mp4",
         "image_overlay_opacity": 40,
         "image_height": "large",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "middle-center",
         "show_text_box": false,
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-3",
