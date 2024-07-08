@@ -3502,3 +3502,41 @@ h1,h2,h3,h4,h5,h6,p{
 .h1,.h2,.h3,.h4,.h5,.h6,p{
   margin: 0;
 }
+
+
+@font-face {
+  font-family:font-ex;
+  src: url('https://cdn.shopify.com/s/files/1/0701/3518/5664/files/Trade_Gothic_LT_Std_Extended_1.ttf?v=1720411403');
+}
+
+.font-ex{
+  font-family:font-ex;
+}
+
+.c-white{
+  color: var(--white-color);
+}
+
+.c-black{
+  color: var(--black-color);
+}
+
+/* .c-white{
+  color: var(--white-color);
+}
+
+.c-white{
+  color: var(--white-color);
+} */
+
+.fw-700{
+  font-weight: var(--font-heading-weight);
+}
+
+.fw-400{
+  font-weight: var(--font-body-weight);
+}
+
+.font-body{
+  font-family: var(--font-body-family);
+}

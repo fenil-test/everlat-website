@@ -407,3 +407,58 @@ slider-component.slider-component-full-width {
 .utility-bar{
   padding: 2px 0px;
 }
+
+.collection-list-wrapper .grid {
+  column-gap: 0px;
+}
+
+.collection-list-wrapper .grid--2-col-desktop .grid__item{
+  width: 100%;
+  max-width: 50%;
+}
+
+.collection-list-wrapper .grid--3-col-desktop .grid__item{
+  width: 100%;
+  max-width: 33.33%;
+}
+
+.collection-list-wrapper .grid--4-col-desktop .grid__item{
+  width: 100%;
+  max-width: 25%;
+}
+
+.collection-list-wrapper .grid--5-col-desktop .grid__item{
+  width: 100%;
+  max-width: 20%;
+}
+
+.collection-list-wrapper .grid--6-col-desktop .grid__item{
+  width: 100%;
+  max-width: 16.66%;
+}
+
+.collection-list-wrapper .card__content {
+  position: absolute;
+  bottom: 61px;
+  left: 70px;
+}
+
+.collection-list-wrapper .card__content .full-unstyled-link{
+  line-height: 28.8px;
+  margin-bottom: 34px;
+}
+
+.collection-list-wrapper .collection-btn{
+  text-decoration: none;
+  display: flex;
+}
+
+.collection-list-wrapper .collection-btn svg{
+  margin-left: 10px;
+}
+
+.collection-list-wrapper .card__content {
+  bottom: 61px;
+  left: 70px;
+  width: 80%;
+}

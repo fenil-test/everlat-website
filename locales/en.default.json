@@ -1,6 +1,7 @@
 {
   "general": {
     "password_page": {
+      "collection_btn":"Shop Now",
       "login_form_heading": "Enter store using password:",
       "login_password_button": "Enter using password",
       "login_form_password_label": "Password",
@@ -315,7 +316,7 @@
       "onboarding_content": "Give your customers a summary of your blog post"
     },
     "featured_collection": {
-      "view_all": "View all",
+      "view_all": "SHOP ALL",
       "view_all_label": "View all products in the {{ collection_name }} collection"
     },
     "collection_list": {

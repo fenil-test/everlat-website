@@ -1359,3 +1359,81 @@ class AccountIcon extends HTMLElement {
 }
 
 customElements.define('account-icon', AccountIcon);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  let cart = document.getElementById('cart-icon-bubble');
+  let colorSelectors = document.querySelectorAll('.color-selector');
+  let sizeSelectors = document.querySelectorAll('.size-selector');
+  let cart_drawer = document.querySelector('cart-drawer');
+  let selectedColor = '';
+  let selectedSize = '';
+  let addToCartId;
+  let images = document.querySelectorAll('.motion-reduce1')
+  const arrayToString = (commonValues) => {
+    if (selectedColor && selectedSize) {
+      addToCartId = commonValues[0];
+      let formData = {
+        'items': [{
+          'id': addToCartId,
+          'quantity': 1
+        }]
+      };
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => {
+          cart.click();
+          return response.json();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  };
+
+  
+
+  const checkAndAddToCart = () => {
+    const commonValues = selectedColor.filter(color => selectedSize.includes(color));
+    arrayToString(commonValues);
+  };
+
+  images.forEach((e,i)=>{
+    colorSelectors.forEach((colorClick,index) => {
+      colorClick.addEventListener('click', (e) => {
+        selectedColor = e.target.getAttribute('data-variant-color').split(",");
+          let selectedcount = images[i].getAttribute('data-count');
+          console.log("i",i);
+          console.log("index",index);
+
+          if(i == index)
+            {
+              console.log(i);
+              let selectedImage = e.target.getAttribute('data-image')
+              images[i].src = selectedImage
+              images[i].srcset = selectedImage
+
+            }
+  
+  
+  
+        
+        checkAndAddToCart();
+      });
+    });
+  })
+
+  sizeSelectors.forEach((sizeClick) => {
+    sizeClick.addEventListener('click', (e) => {
+      selectedSize = e.target.getAttribute('data-variant-size').split(",");
+      checkAndAddToCart();
+    });
+  });
+
+});
