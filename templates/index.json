@@ -107,11 +107,109 @@
         "padding_top": 64,
         "padding_bottom": 56
       }
+    },
+    "collections3_t6dfD7": {
+      "type": "collections3-",
+      "blocks": {
+        "featured_collection_pmeG3U": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fight-gloves"
+          }
+        },
+        "featured_collection_t4x6ac": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "boxing-for-fitness"
+          }
+        },
+        "featured_collection_8tarBt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sparring-gloves"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_pmeG3U",
+        "featured_collection_t4x6ac",
+        "featured_collection_8tarBt"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "slider_featured_collection_8Vfjea": {
+      "type": "slider-featured-collection",
+      "settings": {
+        "title": "PERSONALIZED FOR YOU",
+        "heading_size": "h4",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "new-arrivals-2",
+        "products_to_show": 5,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "footer_image_banner_jLthrJ": {
+      "type": "footer-image-banner",
+      "blocks": {
+        "images_WdHC47": {
+          "type": "images",
+          "settings": {
+            "heading-iamge": "shopify:\/\/shop_images\/image_26.png",
+            "heading": "find your Greatness WithinUse",
+            "heading1": "Code: FITNESS6 for a free 6-month trial"
+          }
+        },
+        "buttons_cVA4UE": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "SUBSCRIBE NOW",
+            "button_link_1": "#"
+          }
+        }
+      },
+      "block_order": [
+        "images_WdHC47",
+        "buttons_cVA4UE"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/image_25.png"
+      }
     }
   },
   "order": [
     "image_banner",
     "collection_list_rxVYmE",
-    "featured_collection_gW3igh"
+    "featured_collection_gW3igh",
+    "collections3_t6dfD7",
+    "slider_featured_collection_8Vfjea",
+    "footer_image_banner_jLthrJ"
   ]
 }

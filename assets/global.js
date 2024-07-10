@@ -1365,14 +1365,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let cart = document.getElementById('cart-icon-bubble');
   let colorSelectors = document.querySelectorAll('.color-selector');
   let sizeSelectors = document.querySelectorAll('.size-selector');
-  let cart_drawer = document.querySelector('cart-drawer');
+  let addTocart = document.querySelectorAll('.product-variant-id');
+  let addClick = document.querySelectorAll('.featured-collection-add');
   let selectedColor = '';
   let selectedSize = '';
   let addToCartId;
-  let images = document.querySelectorAll('.motion-reduce1')
+
   const arrayToString = (commonValues) => {
     if (selectedColor && selectedSize) {
       addToCartId = commonValues[0];
+      // addTocart[0].setAttribute('value',) = addToCartId
+      // console.log("addToCartId",addTocart[0].value);
+      
+      // addClick.forEach((e,index)=>{
+      //   if(addTocart[0]){
+      //     e.click();
+      //   }
+      // });
+
       let formData = {
         'items': [{
           'id': addToCartId,
@@ -1397,37 +1407,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  
-
   const checkAndAddToCart = () => {
     const commonValues = selectedColor.filter(color => selectedSize.includes(color));
     arrayToString(commonValues);
   };
 
-  images.forEach((e,i)=>{
-    colorSelectors.forEach((colorClick,index) => {
-      colorClick.addEventListener('click', (e) => {
-        selectedColor = e.target.getAttribute('data-variant-color').split(",");
-          let selectedcount = images[i].getAttribute('data-count');
-          console.log("i",i);
-          console.log("index",index);
-
-          if(i == index)
-            {
-              console.log(i);
-              let selectedImage = e.target.getAttribute('data-image')
-              images[i].src = selectedImage
-              images[i].srcset = selectedImage
-
-            }
-  
-  
-  
-        
-        checkAndAddToCart();
+  colorSelectors.forEach((colorClick,index) => {
+    colorClick.addEventListener('click', (e) => {
+      selectedColor = e.target.getAttribute('data-variant-color').split(",");
+      let productId = e.target.getAttribute('data-product-id');
+      let selectedImage = e.target.getAttribute('data-image');
+      let productImages = document.querySelectorAll(`.motion-reduce1[data-product-id="${productId}"]`);
+      console.log(productImages);
+      productImages.forEach((image) => {
+        image.src = selectedImage;
+        image.srcset = selectedImage;
       });
+
+      checkAndAddToCart();
     });
-  })
+  });
 
   sizeSelectors.forEach((sizeClick) => {
     sizeClick.addEventListener('click', (e) => {
@@ -1435,5 +1434,6 @@ document.addEventListener('DOMContentLoaded', () => {
       checkAndAddToCart();
     });
   });
-
 });
+
+

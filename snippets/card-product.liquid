@@ -74,7 +74,7 @@
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                 alt="{{ card_product.featured_media.alt | escape }}"
                 class="motion-reduce1"
-                data-count="{{ forloop }}"
+                data-product-id="{{ card_product.id }}"
                 {% unless lazy_load == false %}
                   loading="lazy"
                 {% endunless %}
@@ -278,21 +278,21 @@
             {%- endif -%}
 
 
-            <div class="color">
+            <div class="color" data-product-id="{{ card_product.id }}">
               {% for option in card_product.options_with_values %}
                 {% if option.name == "Color" %}
                   {% for color in option.values %}
                     {% assign variant_ids = '' %}
+                    {% assign imgurl = '' %}
 
                     {% for variant in card_product.variants %}
-                      {% capture imgurl %}{{ variant.featured_image.src | image_url }}{% endcapture %}
                       {% if variant.option1 == color %}
                         {% assign variant_ids = variant_ids | append: variant.id | append: ',' %}
-
+                        {% assign imgurl = variant.featured_image.src | image_url %}
                       {% endif %}
                     {% endfor %}
                     {% if variant_ids != '' %}
-                      <span class="color-selector" data-color="{{ color | handle }}" data-image="{{ imgurl }}" data-variant-color="{{ variant_ids }}" style="background:{{ color }};"></span>
+                      <span class="color-selector" data-product-id="{{ card_product.id }}" data-color="{{ color | handle }}" data-image="{{ imgurl }}" data-variant-color="{{ variant_ids }}" style="background:{{ color }};"></span>
                     {% endif %}
                   {% endfor %}
                 {% endif %}
@@ -685,5 +685,78 @@
 
 
 
+{% comment %} <product-form
+class="product-form"
+data-hide-errors="{{ gift_card_recipient_feature_active }}"
+data-section-id="{{ section.id }}"
+>
+<div class="product-form__error-message-wrapper" role="alert" hidden>
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    class="icon icon-error"
+    viewBox="0 0 13 13"
+  >
+    <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+    <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+    <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+    <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+  </svg>
+  <span class="product-form__error-message"></span>
+</div>
 
+{%- form 'product',
+  card_product,
+  id: product_form_id,
+  class: 'form',
+  novalidate: 'novalidate',
+  data-type: 'add-to-cart-form'
+-%}
+  <input
+    type="hidden"
+    name="id"
+    value="{{ card_product.selected_or_first_available_variant.id }}"
+    {% if card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+      disabled
+    {% endif %}
+    class="product-variant-id"
+  >
 
+  {%- if gift_card_recipient_feature_active -%}
+    {%- render 'gift-card-recipient-form', product: card_product, form: form, section: section -%}
+  {%- endif -%}
+
+  <div class="product-form__buttons">
+    {%- liquid
+      assign check_against_inventory = true
+      if card_product.selected_or_first_available_variant.inventory_management != 'shopify' or card_product.selected_or_first_available_variant.inventory_policy == 'continue'
+        assign check_against_inventory = false
+      endif
+      if card_product.selected_or_first_available_variant.quantity_rule.min > card_product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+        assign quantity_rule_soldout = true
+      endif
+    -%}
+    <button
+      id="ProductSubmitButton-{{ section_id }}"
+      type="submit"
+      name="add"
+      class="product-form__submit featured-collection-add button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+      {% if card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+        disabled
+      {% endif %}
+    >
+      <span>
+        {%- if card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- else -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- endif -%}
+      </span>
+      {%- render 'loading-spinner' -%}
+    </button>
+    {%- if show_dynamic_checkout -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+  </div>
+{%- endform -%}
+</product-form> {% endcomment %}

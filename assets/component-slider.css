@@ -462,3 +462,17 @@ slider-component.slider-component-full-width {
   left: 70px;
   width: 80%;
 }
+
+.card-wrapper-1 .card__information{
+  padding: 32px 0px 0px 0px;
+}
+
+.card-wrapper-1 .collection-btn{
+  text-decoration: none;
+  display: flex;
+  margin-top: 16px;
+}
+
+.card-wrapper-1 .collection-btn svg{
+  margin-left: 10px;
+}

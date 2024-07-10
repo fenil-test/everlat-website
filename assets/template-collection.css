@@ -179,4 +179,16 @@
   padding: 0;
 }
 
+.slider-collection-cions svg:first-child{
+  margin-right: 54px;
+}
 
+
+.collection .card__inner {
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.slider-hover:hover .size {
+  bottom: 0;
+}
