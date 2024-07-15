@@ -96,3 +96,60 @@
 .deferred-media__poster-button .icon-play {
   margin-left: 0.2rem;
 }
+
+.product media-gallery slider-component{
+  width: 100%;
+  position: static;
+}
+
+.product media-gallery{
+  position: relative;
+}
+
+.product .product__media-wrapper {
+  max-width: 60% !important;
+}
+
+.product .product__media img{
+  position: static !important;
+  max-height: 650px;
+  object-fit: contain;
+}
+
+.product .product-media-container{
+  border: none;
+}
+
+.product .thumbnail-list__item .thumbnail{
+  border: none;
+}
+
+.product .slider-button--next{
+  position: absolute;
+  top: 40%;
+  right: 5%;
+}
+
+.product .slider-button--prev{
+  position: absolute;
+  top: 40%;
+  left: 5%;
+}
+
+
+.product-form__input{
+  border: none !important;
+}
+
+.product .product-form__buttons .product-form__submit{
+  background-color: #000;
+  min-width: 175px;
+  color:white;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 13.2px;
+  letter-spacing: 0.08em;
+  text-align: left;
+  min-height: 48px;
+  text-transform: uppercase;
+}

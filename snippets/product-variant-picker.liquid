@@ -58,6 +58,7 @@
           %}
         </fieldset>
       {%- else -%}
+      {% if option.name == "Accessory size" %}
         <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
@@ -84,9 +85,17 @@
                 picker_type: picker_type
               %}
             </select>
-            {% render 'icon-caret' %}
+            {% render 'dropdown-icon' %}
+
           </div>
         </div>
+        {% else %}
+          <div class="d-flex thumbail-dropdown-list">
+            {% for color in option.values %}
+              <span style="background:{{ color }};" class="thumbail-dropdown-color"></span>
+            {% endfor %}
+          </div>
+      {% endif %}
       {%- endif -%}
     {%- endfor -%}
     <script type="application/json">

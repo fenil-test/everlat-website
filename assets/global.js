@@ -539,6 +539,7 @@ customElements.define('header-drawer', HeaderDrawer);
 class ModalDialog extends HTMLElement {
   constructor() {
     super();
+    
     this.querySelector('[id^="ModalClose-"]').addEventListener('click', this.hide.bind(this, false));
     this.addEventListener('keyup', (event) => {
       if (event.code.toUpperCase() === 'ESCAPE') this.hide();
@@ -552,6 +553,17 @@ class ModalDialog extends HTMLElement {
         if (event.target === this) this.hide();
       });
     }
+
+      window.addEventListener('load', () => {
+       
+      if(this){
+       
+        console.log("no");
+        this.show(this);
+        console.log("show");
+      }
+     
+    });
   }
 
   connectedCallback() {
@@ -562,6 +574,7 @@ class ModalDialog extends HTMLElement {
 
   show(opener) {
     this.openedBy = opener;
+    console.log(this,"open")
     const popup = this.querySelector('.template-popup');
     document.body.classList.add('overflow-hidden');
     this.setAttribute('open', '');
@@ -1436,4 +1449,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+$(document).on('click', 'body', function(e){
+  var container = $(".kalviyo");
+  if (!container.is(e.target) && container.has(e.target).length === 0) 
+  {
+    $('.kalviyo ').removeClass("active");
+  }
+});
 

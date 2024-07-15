@@ -5,3 +5,8 @@ $('.mycollection').slick({
     prevArrow: '.slider-pre',
     nextArrow: '.slider-pre'
   })
+  $('.single-item').slick();
+  
+
+
+  
