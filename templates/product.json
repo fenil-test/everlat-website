@@ -43,12 +43,6 @@
           "type": "description",
           "settings": {
           }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
         }
       },
       "block_order": [
@@ -58,8 +52,7 @@
         "variant_picker",
         "buy_buttons",
         "quantity_selector",
-        "description",
-        "share"
+        "description"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -69,12 +62,12 @@
         "media_fit": "contain",
         "gallery_layout": "thumbnail_slider",
         "media_position": "left",
-        "image_zoom": "lightbox",
+        "image_zoom": "none",
         "mobile_thumbnails": "hide",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
-        "padding_bottom": 12
+        "padding_bottom": 32
       }
     },
     "related-products": {

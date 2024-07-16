@@ -342,7 +342,7 @@ h5,
 
 h6,
 .h6 {
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgba(var(--color-foreground));
   margin-block-start: 1.67em;
   margin-block-end: 1.67em;
 }
@@ -3583,7 +3583,7 @@ h1,h2,h3,h4,h5,h6,p{
 }
 
 modal-dialog {
-    display: none;
+    /* display: none; */
   
 }
 
@@ -3743,4 +3743,8 @@ modal-dialog[open]{
   border: 1px solid #0000001A;
   display: block;
   border-radius: 50%;
+}
+
+.g-10{
+  gap: 10px;
 }

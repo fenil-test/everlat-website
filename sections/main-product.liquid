@@ -1,3 +1,9 @@
+<style>
+  .section-{{ section.id }}-padding{
+    overflow:hidden;
+  }
+</style>
+
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -68,6 +74,15 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="product a-center product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      
+      <size-chart>
+        {% assign parentcollection = product.metafields.custom.sizechart.value %}
+        <div class="sizechart-modal">
+          <img class="" src="{{ parentcollection.sizechart |  img_url: "master" }}" >
+          <span id="ModalClose-sizechart"> {% render 'close-icon' %}</span>
+        </div>
+      </size-chart> 
+      
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
@@ -121,6 +136,13 @@
                     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                     {{ form | payment_terms }}
                   {%- endform -%}
+                </div> 
+                <div class="d-flex a-center g-10 ">
+                  {% comment %} {% assign interest_free = product.metafields.custom.interest_free.value | strip_html %}
+                  <span>{{ interest_free }}</span> {% endcomment %}
+                  <span>{{ product.metafields.custom.interest_free | metafield_tag  }}</span>
+                  <img src="https://cdn.shopify.com/s/files/1/0701/3518/5664/files/Union.png?v=1721107602" alt="" width="88px" height="16px">
+                  {%  render 'product-i-icon' %}
                 </div>
               {%- when 'inventory' -%}
                 <p
@@ -182,6 +204,11 @@
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
+                  <div class="product__description-btn d-flex a-center">
+                      <span class="font-ex h6 fw-700 product__description-item1">READ MORE</span>
+                      <span class="font-ex h6 fw-700 product__description-item2">READ LESS</span>
+                      {% render 'right-black-icon' %}
+                  </div>
                 {%- endif -%}
               {%- when 'sku' -%}
                 <p
@@ -239,7 +266,7 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
-                  <div class="d-flex a-center">
+                  <div class="d-flex  g-10 product-add-buy">
                     {%- render 'buy-buttons',
                     block: block,
                     product: product,
@@ -247,6 +274,12 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+
+                  <div class="fav-product d-flex a-center j-center">
+                    <button class="font-ex h6">Favorite</button>
+                    {%  render 'fav-icon' %}
+                  </div>
+
                   <div
                   id="Quantity-Form-{{ section.id }}"
                   class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -646,6 +679,8 @@
       </div>
     </div>
 
+   
+
     {% render 'product-media-modal', variant_images: variant_images %}
 
     {% assign popups = section.blocks | where: 'type', 'popup' %}
@@ -673,6 +708,8 @@
         </div>
       </modal-dialog>
     {%- endfor -%}
+
+    
 
     {%- if product.media.size > 0 -%}
       <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>

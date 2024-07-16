@@ -228,6 +228,7 @@
               aria-current="true"
               aria-controls="GalleryViewer-{{ section.id }}"
               aria-describedby="{{ thumbnail_id }}"
+              data-slide="0"
             >
               {{
                 featured_media.preview_image
@@ -286,7 +287,8 @@
                 {% endif %}
                 aria-controls="GalleryViewer-{{ section.id }}"
                 aria-describedby="{{ thumbnail_id }}"
-                data-slide="{{ forloop.index }}"
+                data-slide="{{ forloop.index | minus: 3 }}"
+                
               >
                 {{
                   media.preview_image
