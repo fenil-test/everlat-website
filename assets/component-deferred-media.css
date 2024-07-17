@@ -235,3 +235,33 @@ size-chart[open]{
 .product__description-item1{
   cursor: pointer;
 }
+
+.product media-gallery slider-component:nth-child(3){
+  position: relative;
+  top: -40px;
+}
+
+.product-releted-details .product-releted-image{
+  object-fit: cover;
+  height: 100%;
+  display: block;
+}
+
+.product-releted-details{
+  position: relative;
+  height: 100%;
+  max-height: 900px;
+}
+
+.product-releted-details .product-releted-text{
+  position: absolute;
+  top: 0;
+  max-width: 540px;
+  letter-spacing: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 230px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}

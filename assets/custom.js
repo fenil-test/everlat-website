@@ -14,3 +14,8 @@ product__description2.addEventListener('click',()=>{
     product__description2.style.display = 'none';    
     product__description1.style.display = 'block';    
 });
+
+
+document.querySelector('.multi-show-btn').addEventListener('click',()=>{
+    document.querySelector('.multicolumn-list').style.height = 'auto';
+})

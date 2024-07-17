@@ -3540,6 +3540,10 @@ h1,h2,h3,h4,h5,h6,p{
   color: var(--black-color);
 }
 
+.cd-black{
+  color: var(--tertiary-color);
+}
+
 .t-center{
   text-align: center;
 }
@@ -3570,6 +3574,22 @@ h1,h2,h3,h4,h5,h6,p{
 
 .text-decoration{
   text-decoration: none;
+}
+
+.l-space{
+  letter-spacing: 0;
+}
+
+.d-block{
+  display: block;
+}
+
+.inline-block{
+  display: block;
+}
+
+.text-upper{
+  text-transform: uppercase;
 }
 
 
