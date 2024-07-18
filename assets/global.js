@@ -1483,6 +1483,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   colorSelectors.forEach((colorClick,index) => {
     colorClick.addEventListener('click', (e) => {
+
       selectedColor = e.target.getAttribute('data-variant-color').split(",");
       let productId = e.target.getAttribute('data-product-id');
       let selectedImage = e.target.getAttribute('data-image');
@@ -1491,10 +1492,12 @@ document.addEventListener('DOMContentLoaded', () => {
       productImages.forEach((image) => {
         image.src = selectedImage;
         image.srcset = selectedImage;
+        console.log('hello')  
       });
-
+       console.log('hello')
       checkAndAddToCart();
     });
+
   });
 
   sizeSelectors.forEach((sizeClick) => {
@@ -1512,5 +1515,27 @@ $(document).on('click', 'body', function(e){
   {
     $('.kalviyo ').removeClass("active");
   }
+});
+
+
+$(document).on('click', 'body', function(e){
+let colorSelectors1 = document.querySelectorAll('.color-selector');
+colorSelectors1.forEach((colorClick,index) => {
+  colorClick.addEventListener('click', (e) => {
+
+    selectedColor = e.target.getAttribute('data-variant-color').split(",");
+    let productId = e.target.getAttribute('data-product-id');
+    let selectedImage = e.target.getAttribute('data-image');
+    let productImages = document.querySelectorAll(`.motion-reduce1[data-product-id="${productId}"]`);
+    console.log(productImages);
+    productImages.forEach((image) => {
+      image.src = selectedImage;
+      image.srcset = selectedImage;
+      console.log('hello')  
+    });
+     console.log('hello')
+  });
+  
+});
 });
 

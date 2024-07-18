@@ -1017,6 +1017,7 @@ a.product__text {
 
 .thumbnail.global-media-settings img {
   border-radius: 0;
+  mix-blend-mode: multiply;
 }
 
 .thumbnail[aria-current] {

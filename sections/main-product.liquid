@@ -200,6 +200,7 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
+                {% render 'shipping-time' %}
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
@@ -777,35 +778,69 @@
     </script>
   </div>
   <div class="w-100 product-releted-details">
-    {% assign data = product.metafields.custom.product_image.value %}
+    {% assign data = product.metafields.custom.product_image |  handleize %}
     {% assign heading = product.metafields.custom.product_sec.value %}
     {% assign text = product.metafields.custom.product_sec_des.value %}
-        <img
+       {% if data contains 'image' %}
+    {% assign image = product.metafields.custom.product_image.value %}
+
+         <img
           srcset="
-            {%- if data.width >= 375 -%}{{ data | image_url: width: 375 }} 375w,{%- endif -%}
-            {%- if data.width >= 750 -%}{{ data | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if data.width >= 1100 -%}{{ data | image_url: width: 1100 }} 1100w,{%- endif -%}
-            {%- if data.width >= 1500 -%}{{ data | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {%- if data.width >= 1780 -%}{{ data | image_url: width: 1780 }} 1780w,{%- endif -%}
-            {%- if data.width >= 2000 -%}{{ data | image_url: width: 2000 }} 2000w,{%- endif -%}
-            {%- if data.width >= 3000 -%}{{ data | image_url: width: 3000 }} 3000w,{%- endif -%}
-            {%- if data.width >= 4000 -%}{{ data | image_url: width: 4000 }} 4000w,{%- endif -%}
-            {{ data | image_url }} {{ data.width }}w
+            {%- if image.width >= 375 -%}{{ image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if image.width >= 750 -%}{{ image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if image.width >= 1100 -%}{{ image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if image.width >= 1500 -%}{{ image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if image.width >= 1780 -%}{{ image | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if image.width >= 2000 -%}{{ image | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if image.width >= 3000 -%}{{ image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if image.width >= 4000 -%}{{ image | image_url: width: 4000 }} 4000w,{%- endif -%}
+            {{ image | image_url }} {{ image.width }}w
           "
           sizes="100vw"
-          src="{{ data | image_url: width: 100 }}"
+          src="{{ image | image_url: width: 100 }}"
           loading="lazy"
-          alt="{{ data.alt | escape }}"
-          width="{{ data.width }}"
-          height="{{ data.width | divided_by: data.aspect_ratio }}"
+          alt="{{ image.alt | escape }}"
+          width="{{ image.width }}"
+          height="{{ image.width | divided_by: image.aspect_ratio }}"
           class="w-100 product-releted-image"
         >
+        {% else %}
+          {% assign video = product.metafields.custom.product_image.value %}
+
+         {{ video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+       {% endif %}
     <div class="product-releted-text">
-      <h3 class="c-white"> {{ heading }}</h3>
+      <h3 class="c-white text-upper"> {{ heading }}</h3>
       <p class="c-white"> {{ text }}</p>
     </div>
   </div>
 </section>
+
+
+{% comment %} {% assign deskvideoHandle = product.metafields.custom.product_banner_image | handle %}
+{% assign videoHandle = product.metafields.custom.product_banner_mobile_image | handle %}
+<div class="mg-hide">
+  {% if deskvideoHandle contains 'video' %}
+    {% assign media1 = product.metafields.custom.product_banner_image.value %}
+    {{
+      media1
+      | video_tag:
+        image_size: 'master',
+        controls: false,
+        loop: true,
+        autoplay: true,
+        muted: muted,
+        playsinline: true
+    }}
+
+  {% else %}
+    <img
+      src="{{ product.metafields.custom.product_banner_image | image_url }}"
+      width=""
+      height=""
+      loading="lazy"
+    >
+  {% endif %} {% endcomment %}
 
 {% schema %}
 {

@@ -118,6 +118,7 @@
   border: 1px solid #0000001A;
   display: inline-block;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .collection .size-selector {
@@ -150,7 +151,7 @@
   padding: 20px 0;
   text-align: center;
   position: absolute;
-  bottom: -77px;
+  bottom: -50%;
   transition: 0.5s;
   display: flex;
   justify-content: center;

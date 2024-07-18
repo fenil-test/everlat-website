@@ -213,7 +213,7 @@ size-chart[open]{
 }
 
 .product .product__description{
-    height: 145px;
+    height: 140px;
     overflow: hidden;
     font-size: 14px;
     font-weight: 300;
@@ -264,4 +264,10 @@ size-chart[open]{
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+.product-releted-details video{
+  display: block;
+    width: 100%;
+    object-fit: cover;
 }

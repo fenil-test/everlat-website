@@ -156,7 +156,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "new-arrivals-2",
+        "collection": "personalized-for-you",
         "products_to_show": 5,
         "columns_desktop": 4,
         "full_width": false,

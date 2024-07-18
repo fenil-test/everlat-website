@@ -20,6 +20,12 @@
   }
 {%- endstyle -%}
 
+{% for block in section.blocks %}
+  {% capture count %}
+    {{ forloop.length }}
+  {% endcapture %}
+{% endfor %}
+
 {%- liquid
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
@@ -50,7 +56,7 @@
               <span class="font-ex h4 fw-400 l-space">/5</span>
               {% render 'star-icon' %}
             </div>
-            <span class="font-ex l-space small_body cd-black">Based on 363 reviews</span>
+            <span class="font-ex l-space small_body cd-black">Based on {{ count }} reviews</span>
           </div>
           <a href="{{ section.settings.button_link1 }}" class="c-white multi-review-btn font-ex h6">
             {{- section.settings.button_label1 | escape -}}
@@ -72,7 +78,8 @@
       endif
       endfor
       -%}
-      {%- for block in section.blocks   -%}
+    
+      {%- for block in section.blocks  %}
           {%- assign empty_column = '' -%}
           {%- if block.settings.image == blank
             and block.settings.title == blank
@@ -84,7 +91,7 @@
 
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="multi-show multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -99,7 +106,7 @@
                     <span >{{ block.settings.short_name }}</span>
                     <div class="multi-review-rating">
                       <div class="d-flex review_name">
-                        <h6 class="inline-block font-ex text-upper  ">{{ block.settings.name }}</h6>
+                        <h6 class="inline-block font-ex text-upper">{{ block.settings.name }}</h6>
                         <h6 class="fw-400 inline-block">Verified Buyer</h6>
                       </div>
                       {% render 'star-icon' %}
@@ -194,10 +201,12 @@
                     {{- block.settings.link_label | escape -}}
                     <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span></a
                   >
+                  
                 {%- endif -%}
               </div>
             </div>
-            {% assign count = forloop.length %}
+            
+            {% comment %} {% assign count = forloop.length %} {% endcomment %}
             </li>
           {%- endfor -%}
           </ul>
@@ -229,10 +238,10 @@
         </div>
       {%- endif -%}
     </slider-component>
-  <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
+  <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %} g-30 a-end d-flex j-center">
       <span class=""> Displaying reviews: 1-{{ count }}</span>
       {%- if section.settings.button_label != blank -%}
-        <a
+        <button
           class="button button--primary multi-show-btn h6 fw-700 l-space font-ex"
           {% if section.settings.button_link == blank %}
             role="link" aria-disabled="true"
@@ -241,11 +250,24 @@
           {% endif %}
         >
           {{ section.settings.button_label | escape }}
-        </a>
+        </button>
+        <button
+          class="button button--primary multi-show-btn1  h6 fw-700 l-space font-ex"
+          {% if section.settings.button_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href=""
+          {% endif %}
+        >
+          SHOW LESS
+        </button>
       {%- endif -%}
       </div>
       </div>
       </div>
+
+
+      
 
 {% schema %}
 {

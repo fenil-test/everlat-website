@@ -445,6 +445,14 @@ table:not([class]) th {
   text-align: center;
 }
 
+.a-end{
+  align-items: end;
+}
+
+.g-30{
+  gap: 30px;
+}
+
 .right {
   text-align: right;
 }

@@ -585,11 +585,19 @@ slider-component.slider-component-full-width {
 .multi-show-btn{
   background: transparent;
   border: 1.5px solid #000000;
-  margin-left: 28px;
 }
 
-.multicolumn .multicolumn-list {
-  max-height: 870px;
-  overflow: hidden  ;
+
+.multicolumn .multi-show:nth-child(n+5) {
+  display: none;
 }
+
+.multi-show-btn1{
+  display: none;
+}
+
+.multicolumn .button:after{
+  box-shadow: none;
+}
+
 

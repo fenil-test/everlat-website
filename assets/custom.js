@@ -16,6 +16,28 @@ product__description2.addEventListener('click',()=>{
 });
 
 
-document.querySelector('.multi-show-btn').addEventListener('click',()=>{
-    document.querySelector('.multicolumn-list').style.height = 'auto';
-})
+let showCard = document.querySelectorAll('.multi-show');
+let multiShowBtn = document.querySelector('.multi-show-btn');
+let multiShowBtn1 = document.querySelector('.multi-show-btn1');
+
+multiShowBtn.addEventListener('click', () => {
+    showCard.forEach((e) => {
+        e.style.display = 'block'; 
+    });
+    console.log("All cards are now visible"); 
+    multiShowBtn1.style.display = 'block';
+    multiShowBtn.style.display = 'none';
+});
+
+multiShowBtn1.addEventListener('click', () => {
+    showCard.forEach((e, index) => {
+        if (index < 4) {
+            e.style.display = 'block';
+        } else {
+            e.style.display = 'none';
+        }
+    });
+    console.log("Only the first four cards are now visible");
+    multiShowBtn1.style.display = 'none';
+    multiShowBtn.style.display = 'block';
+});
