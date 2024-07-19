@@ -9,15 +9,25 @@
         const pdpData = {
             productTitle: "{{ product.title }}",
             productImg: "{{ product.featured_image | img_url: '500x' }}",
+            productIds: "{{ product.id }}",
+            productVariantImage: [
+                {% for variant in product.variants %}
+                    "{{ variant.featured_image.src | image_url }}"{% if forloop.last %}{% else %},{% endif %}
+                {% endfor %}
+            ],
             productPrice: "{{ product.price | money }}",
-            productUrl: "{{ product.url }}"
+            productUrl: "{{ product.url }}",
+            productColorVariants: [
+                {% for variant in product.variants %}
+                    "{{ variant.option1 }}"{% if forloop.last %}{% else %},{% endif %}
+                {% endfor %}
+            ],
         };
 
         const productArr = [];
         let jsonResp, jsonRespArr, jsonRespArrStr;
         const numberOfProduct = 4;
         productArr.push(pdpData);
-
         const currPdpTitle = pdpData.productTitle;
         const pdpDataString = JSON.stringify(productArr);
         const localData = localStorage.getItem('recently_viewed');
@@ -26,9 +36,13 @@
             localStorage.setItem('recently_viewed', pdpDataString);
         } else {
             const oldPdpData = localStorage.getItem('recently_viewed');
+            console.log("oldPdpData", oldPdpData);
+            
+            // Parse oldPdpData to extract product IDs
+            const oldPdpDataParsed = JSON.parse(oldPdpData);
+
             const countPdpData = (oldPdpData.match(/productTitle/g) || []).length;
             const reVisitPdp = oldPdpData.includes(currPdpTitle);
-
             if (countPdpData < numberOfProduct && !reVisitPdp) {
                 jsonResp = JSON.parse(oldPdpData);
                 jsonRespArr = jsonResp.concat(productArr);
@@ -47,19 +61,49 @@
     setRecentlyViewedPdp();
 </script>
 
-<div class="recently-title">
-    <h4 class="title inline-richtext h2 scroll-trigger animate--slide-in"><b>Recently Viewed</b></h4>
+<div class="recently-title page-width">
+    <h4 class="text-upper title inline-richtext scroll-trigger animate--slide-in mt-0 mb-15">Recently Viewed</h4>
 </div>
-<div class="js-recentPdpBlock"></div>
+<div class="page-width">
+    <div class="js-recentPdpBlock grid product-grid grid--4-col-desktop grid--2-col-tablet-down"></div>
+</div>
 
 <script>
     // Function to get recently viewed products
     function getRecentPdp() {
-        const pdpData = JSON.parse(localStorage.getItem('recently_viewed'));
-        console.log(pdpData);
+        const pdpData = JSON.parse(localStorage.getItem('recently_viewed')) || [];
         const recentViewHtml = [];
 
-        pdpData.forEach(function(item) {
+        pdpData.forEach(function(item, i) {
+
+            if (!item.productColorVariants || !item.productVariantImage) {
+                console.error("Missing product color variants or variant images.");
+                return;
+            }
+
+            let colorImageMap = {};
+            item.productColorVariants.forEach((color, index) => {
+                if (item.productVariantImage[index]) {
+                    colorImageMap[color] = item.productVariantImage[index];
+                } else {
+                    colorImageMap[color] = ''; // Default to empty string if no image available
+                }
+            });
+
+            let uniq_product_color = [...new Set(item.productColorVariants)];
+
+            let colorHtml = uniq_product_color.map((color) => 
+            `
+            <span
+              class="color-selector"
+              data-product-id="${ item.productIds }"
+              data-color="${color}"
+              data-image="${colorImageMap[color]}"
+              style="background:${color};"
+            >
+            </span>
+            `).join('');
+
             recentViewHtml.push(`
                 <li
                     id="Slide-{{ section.id }}-{{ forloop.index }}"
@@ -73,14 +117,15 @@
                         product_url: "${item.productUrl}",
                         product_img: "${item.productImg}",
                         product_title: "${item.productTitle}",
-                        product_price: "${item.productPrice}"
+                        product_price: "${item.productPrice}",
+                        product_colors: "${colorHtml}"
+
                     %}
                 </li>
             `);
         });
 
         const recentBlock = `${recentViewHtml.join('')}`;
-        console.log(recentBlock);
         const contentBlock = document.querySelectorAll('.js-recentPdpBlock');
         contentBlock.forEach(element => {
             element.innerHTML = recentBlock;
