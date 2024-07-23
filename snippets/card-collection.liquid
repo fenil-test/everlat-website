@@ -93,7 +93,7 @@
                 class="h4 c-white full-unstyled-link"
               >
                 {%- if card_collection.title != blank -%}
-                  {{- card_collection.title | escape -}}
+                  {% comment %}    {% endcomment %}
                 {%- else -%}
                   {{ 'onboarding.collection_title' | t }}
                 {%- endif -%}

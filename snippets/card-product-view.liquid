@@ -39,6 +39,8 @@
   endif
 -%}
 <div class="card-wrapper product-card-wrapper underline-links-hover">
+<h1></h1>
+  
   <div
     class="
       card card--{{ settings.card_style }}
@@ -64,10 +66,11 @@
               <img src="{{ img | image_url: width: 500 }}" width="100%" height="100%" />
               <img src="{{ img | image_tag: width: 500 }}" width="100%" height="100%" />
           {% endfor %}  {% endcomment %}
-          {{ product_img |  img_tag}}
+      <img src="{{ product_img }}" alt="" data-product-id="{{ data_product_id }}" class="motion-reduce1">
+
         </div>
       </div>
-      {% comment %}
+      
         <div class="card__content">
           <div class="card__information">
             <h5
@@ -82,7 +85,7 @@
                 class="full-unstyled-link font-body"
                 aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
               >
-                {{ product_title | escape }}
+              
               </a>
             </h5>
           </div>
@@ -103,81 +106,22 @@
               </span>
             {%- endif -%}
           </div>
-
-          <div class="size">
-            {% for option in card_product.options_with_values %}
-              {% assign valuess = false %}
-              {% if option.name contains "size" %}
-                {% assign valuess = true %}
-
-                {% for size in option.values %}
-                  {% assign variant_ids = '' %}
-                  {% for variant in card_product.variants %}
-                    {% if variant.option2 == size %}
-                      {% assign variant_ids = variant_ids | append: variant.id | append: ',' %}
-                    {% endif %}
-                  {% endfor %}
-                  {% if variant_ids != '' %}
-                    <span class="size-selector h6 fw-700" data-size="{{ size | handle }}" data-variant-size="{{ variant_ids }}">{{ size }}</span>
-                  {% endif %}
-                {% endfor %}
-
+  
+          
+           <div class="size count-size-{{ count_size }}" id="{{ count_size }}">
+              {% if count_size == 0 %}
+                <h4>ADD</h4>
+              {%  else %} 
+                {{ product_size }}
               {% endif %}
+              <h5 class="size-selector h6 fw-700 font-ex">ADD</h5>
+              
+           </div>
+               
 
-            {% endfor %}
-
-            <!-- {% if valuess != true and option.name != "Accessory size" %}
-              <product-form data-section-id="{{ section.id }}">
-                {%- form 'product',
-                  card_product,
-                  id: product_form_id,
-                  class: 'form',
-                  novalidate: 'novalidate',
-                  data-type: 'add-to-cart-form'
-                -%}
-                  <input
-                    type="hidden"
-                    name="id"
-                    value="{{ card_product.selected_or_first_available_variant.id }}"
-                    class="product-variant-id"
-                    {% if card_product.selected_or_first_available_variant.available == false %}
-                      disabled
-                    {% endif %}
-                  >
-                  <button
-                    id="{{ product_form_id }}-submit"
-                    type="submit"
-                    name="add"
-                    class="quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} card--horizontal__quick-add{% endif %}"
-                    aria-haspopup="dialog"
-                    aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
-                    aria-live="polite"
-                    data-sold-out-message="true"
-                    {% if card_product.selected_or_first_available_variant.available == false %}
-                      disabled
-                    {% endif %}
-                  >
-                    <span>
-                      {%- if card_product.selected_or_first_available_variant.available -%}
-                        ADD
-                      {%- else -%}
-                        SOLD
-                      {%- endif -%}
-                    </span>
-                    <span class="sold-out-message hidden">
-                      {{ 'products.product.sold_out' | t }}
-                    </span>
-                    {%- if horizontal_quick_add -%}
-                      <span class="icon-wrap">{% render 'icon-plus' %}</span>
-                    {%- endif -%}
-                    {%- render 'loading-spinner' -%}
-                  </button>
-                {%- endform -%}
-              </product-form>
-            {% endif %} -->
-          </div>
+        
+          
         </div>
-      {% endcomment %}
     </div>
     <div class="card__content">
       <div class="card__information">
@@ -240,7 +184,7 @@
             </p>
           {%- endif -%}
 
-          <div class="color" data-product-id="{{ product.id }}">
+          <div class="color" data-product-id="{{ data_product_id }}">
               {{ product_colors }}
           </div>
 
@@ -592,3 +536,6 @@
     </div>
   </div>
 </div>
+
+
+           

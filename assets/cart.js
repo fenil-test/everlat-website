@@ -181,6 +181,17 @@ class CartItems extends HTMLElement {
       })
       .finally(() => {
         this.disableLoading(line);
+        $('.mycollection1').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          // speed: 1000,
+          dots: false,
+          arrows: true,
+          variableWidth: true,
+          prevArrow: $('.drawer-prev-btn'),
+          nextArrow: $('.drawer-next-btn'),
+        });
       });
   }
 

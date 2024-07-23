@@ -3,9 +3,38 @@ $('.mycollection').slick({
     slidesToScroll: 1,
     centerPadding: '60px',
     prevArrow: '.slider-pre',
-    nextArrow: '.slider-pre'
+    nextArrow: '.slider-pre',
+    
   })
   $('.single-item').slick();
+
+  // $('.mycollection1').slick({
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   centerPadding: '60px',
+  //   prevArrow: '.slider-pre',
+  //   nextArrow: '.slider-pre',
+    
+  // })
+  // $('.single-item').slick();
+
+
+    function initializeSlider() {
+      if (!$(".mycollection1").hasClass("slick-initialized")
+  ) {
+        setTimeout(() => {
+          $('.mycollection1').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: true,
+            prevArrow: $('.cart-slider-btn'),
+            nextArrow: $('.cart-slider-btn'),
+          });
+        }, 2000);
+      }
+    }
+    initializeSlider();
   
 
 
