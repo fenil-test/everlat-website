@@ -57,11 +57,72 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_menu_FAnp49": {
+          "type": "Mega_menu",
+          "settings": {
+            "menu_text": "EQUIPMENT",
+            "menu_text1": "NEW & FEATURED",
+            "menu1": "new-featured",
+            "menu_text2": "BOXING",
+            "menu2": "boxing-1",
+            "menu_text3": "MMA",
+            "menu3": "mma-1",
+            "menu_text4": "TRAINING & FITNESS",
+            "menu4": "training-fitness",
+            "menu_text5": "COLLECTIONS",
+            "menu5": "collections",
+            "menu_text6": "Enter a text",
+            "menu6": "main-menu"
+          }
+        },
+        "mega_menu_XaJxfh": {
+          "type": "Mega_menu",
+          "settings": {
+            "menu_text": "APPAREL",
+            "menu_text1": "ALL APPAREL",
+            "menu1": "all-apparel",
+            "menu_text2": "MEN",
+            "menu2": "men",
+            "menu_text3": "WOMEN",
+            "menu3": "women",
+            "menu_text4": "TRAINING APPAREL",
+            "menu4": "training-apparel",
+            "menu_text5": "Enter a text",
+            "menu5": "main-menu",
+            "menu_text6": "Enter a text",
+            "menu6": "main-menu"
+          }
+        },
+        "mega_menu_N8GQ4T": {
+          "type": "Mega_menu",
+          "settings": {
+            "menu_text": "FOOTWEAR",
+            "menu_text1": "ALL FOOTWEAR",
+            "menu1": "all-footwear",
+            "menu_text2": "SHOE TYPE",
+            "menu2": "shoe-type",
+            "menu_text3": "Enter a text",
+            "menu3": "main-menu",
+            "menu_text4": "Enter a text",
+            "menu4": "main-menu",
+            "menu_text5": "Enter a text",
+            "menu5": "main-menu",
+            "menu_text6": "Enter a text",
+            "menu6": "main-menu"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_FAnp49",
+        "mega_menu_XaJxfh",
+        "mega_menu_N8GQ4T"
+      ],
       "settings": {
         "logo_position": "middle-center",
         "menu": "everlast-web",
         "menu_type_desktop": "mega",
-        "sticky_header_type": "on-scroll-up",
+        "sticky_header_type": "reduce-logo-size",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
         "menu_color_scheme": "scheme-1",

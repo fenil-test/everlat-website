@@ -28,8 +28,9 @@ $('.mycollection').slick({
             slidesToScroll: 1,
             dots: false,
             arrows: true,
+            centerPadding: '10px',
             prevArrow: $('.cart-slider-btn'),
-            nextArrow: $('.cart-slider-btn'),
+            nextArrow: $('.cart-slider-btn1'),
           });
         }, 2000);
       }
@@ -37,5 +38,5 @@ $('.mycollection').slick({
     initializeSlider();
   
 
-
+    
   

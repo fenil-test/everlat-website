@@ -110,9 +110,9 @@ if (!customElements.get('product-form')) {
                     // speed: 1000,
                     dots: false,
                     arrows: true,
-                    variableWidth: true,
-                    prevArrow: $('.drawer-prev-btn'),
-                    nextArrow: $('.drawer-next-btn'),
+                   
+                    prevArrow: $('.cart-slider-btn'),
+                    nextArrow: $('.cart-slider-btn1'),
                   });
                 }, 1000);
               }
